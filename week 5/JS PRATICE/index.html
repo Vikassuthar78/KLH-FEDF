@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>JS Basics</title>
+</head>
+
+<body>
+    <script>
+        
+        document.write("welcome to javascript", "<br>");  //disply text on browser
+
+        console.log("debugging sooon.........");  //display text on console
+        console.table([10, 20, 30, 40, 50]); //display data in the form of table
+
+
+        document.write(10 +"10", "<br>");        //1010
+        document.write(10 + +"10", "<br>");      // string datatype converted to number datatype output:20
+
+        //type coersion available from Jvascript6 onwards
+        document.write(1 + +"2" + +"10", "<br>");   //13
+        document.write(10 - "10", "<br>");  //0
+        document.write(10 * "10", "<br>"); //100
+        document.write(10 / "10", "<br>");    //1
+        document.write(10 / "0", "<br>");  //infinity 
+        document.write(10 - "A", "<br>");  // NAN
+
+
+        document.write(10 == "10", "<br>") //true
+        document.write(10 === "10", "<br>")  //false
+        document.write(0.1 + 0.2, "<br><br>")   //0.30000000000000004, IEEE 754 double-precision floating-point format to represent numbers.
+
+        document.write((0.1 + 0.2).toFixed(2), "<br>"); // "0.30"
+
+
+        document.write(0.1 + 0.2 == 0.3, "<br>")   //false
+        document.write(0.1 + 0.2 === 0.3, "<br>")   //false
+
+        // true → 1 , false → 0
+
+        //document.write(true + 1, "<br>");       //2
+        //document.write(true / false, "<br>");   //infinity
+        //document.write(1 + "true", "<br>");     
+
+        //document.write(true + 1 - "1", "<br>");  // 1
+        document.write(3 > 2 > 1, "<br>");          //false
+
+        document.write(1<2 < 3, "<br>");          //true
+
+
+        //terninary operator
+        // condition   ? block1 : block2
+
+        9>8>7 ? documnet.write("Javascript")  : document.writeln("Frontend Framework")
+
+/*
+        let marks = 65;
+          let grade = (marks >= 90) ? "A" : (marks >= 75) ? "B" :(marks >= 50) ? "C" : "F";
+            document.write("<br>", "Your grade is: " + grade); */
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Basics</title>
+</head>
+
+    <body>
+        <script>
+     //const keyword introduced in ES6, reinitialization is not possible
+       //const x=100;
+       //x=200     //uncaught TypeError: Assignment to constant variable
+
+         const arr1=[10,20,30,40,50];  
+        //Note: we can modify const array
+
+        // at function is used to access element
+        document.write(arr1.at(0),"<br>",arr1.at(-5),"<br>");
+
+        //read 20
+       document.write(arr1.at(1),arr1.at(-4),"<br>");
+
+        arr1[0]=100;
+        document.write(arr1.at(0));
+        arr1[5]=600;  //increasing array with one more element
+        console.table(arr1);  
+
+
+
+
+       let obj1 = { 
+            frontend: "React",
+            backend: "Node",
+            database: "MondoDB" };
+
+        //sol-1   (dot operator)
+        let s1 = obj1.frontend;
+        document.write(s1, "<br>");
+
+        //sol-2  ([ ])
+
+        let s2 = obj1["backend"];
+        document.write(s2, "<br>", "<br>");
+
+        //sol-3  (destructuring in ES6)
+
+        let { frontend, backend, database } = obj1;
+        document.write(frontend, "<br>", backend, "<br>", database, "<br>", "<br>");
+
+
+        //sol-4 
+
+        for (let key in obj1) {
+            
+            document.write(obj1[key], "<br>");
+        }
+
+
+    
+        const obj2 = {
+            frontend1: "React",
+            backend1: "Node",
+            database1: "MongoDB"
+        };
+
+        //obj2 = {};   //  Error: Assignment to constant variable
+
+        obj2.frontend = "ReactJS";    //modifying
+        obj2.stack = "MERN Stack";  //adding mew key
+
+        // Solution-3
+        let { frontend1, backend1, database1, stack } = obj2;
+        document.write(frontend1,"<br>", backend1,"<br>", database1, stack); 
+
+
+
+    </script>
+    
+    </body>
+
+</html>

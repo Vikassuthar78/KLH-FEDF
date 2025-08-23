@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Validation with DOM & Events</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    form {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+    input.valid {
+      border-color: green;
+      background-color: #e6ffe6;
+    }
+    input.invalid {
+      border-color: red;
+      background-color: #ffe6e6;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Registration Form</h2>
+  <form id="myForm" novalidate>
+    <div class="form-group">
+      <label for="fullname">Full Name:</label>
+      <input type="text" id="fullname" name="fullname" required>
+      <div class="error" id="fullnameError"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <div class="error" id="emailError"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required minlength="6">
+      <div class="error" id="passwordError"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+      <div class="error" id="phoneError"></div>
+    </div>
+
+    <button type="submit">Submit</button>
+    <div id="formSuccess" class="success"></div>
+  </form>
+
+  <script>
+    const form = document.getElementById("myForm");
+
+    // Input fields
+    const fullname = document.getElementById("fullname");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const phone = document.getElementById("phone");
+
+    // Error messages
+    const fullnameError = document.getElementById("fullnameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const phoneError = document.getElementById("phoneError");
+    const formSuccess = document.getElementById("formSuccess");
+
+    // Regex for email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Validation functions
+    function validateName() {
+      if (fullname.value.trim() === "") {
+        fullname.classList.add("invalid");
+        fullname.classList.remove("valid");
+        fullnameError.textContent = "Full name is required.";
+        return false;
+      }
+      fullname.classList.add("valid");
+      fullname.classList.remove("invalid");
+      fullnameError.textContent = "";
+      return true;
+    }
+
+    function validateEmail() {
+      if (!emailRegex.test(email.value)) {
+        email.classList.add("invalid");
+        email.classList.remove("valid");
+        emailError.textContent = "Enter a valid email address.";
+        return false;
+      }
+      email.classList.add("valid");
+      email.classList.remove("invalid");
+      emailError.textContent = "";
+      return true;
+    }
+
+    function validatePassword() {
+      const pwd = password.value;
+      const specialChar = /[!@#$%^&*(),.?":{}|<>]/;
+      if (pwd.length < 6) {
+        password.classList.add("invalid");
+        password.classList.remove("valid");
+        passwordError.textContent = "Password must be at least 6 characters.";
+        return false;
+      } else if (!specialChar.test(pwd)) {
+        password.classList.add("invalid");
+        password.classList.remove("valid");
+        passwordError.textContent = "Password must include a special character.";
+        return false;
+      }
+      password.classList.add("valid");
+      password.classList.remove("invalid");
+      passwordError.textContent = "";
+      return true;
+    }
+
+    function validatePhone() {
+      const phoneRegex = /^[0-9]{10}$/;
+      if (!phoneRegex.test(phone.value)) {
+        phone.classList.add("invalid");
+        phone.classList.remove("valid");
+        phoneError.textContent = "Phone must be 10 digits.";
+        return false;
+      }
+      phone.classList.add("valid");
+      phone.classList.remove("invalid");
+      phoneError.textContent = "";
+      return true;
+    }
+
+    // Event listeners for real-time validation
+    fullname.addEventListener("input", validateName);
+    email.addEventListener("input", validateEmail);
+    password.addEventListener("input", validatePassword);
+    phone.addEventListener("input", validatePhone);
+
+    // Form submission
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const validName = validateName();
+      const validEmail = validateEmail();
+      const validPassword = validatePassword();
+      const validPhone = validatePhone();
+
+      if (validName && validEmail && validPassword && validPhone) {
+        formSuccess.textContent = "Form submitted successfully!";
+        form.reset();
+
+        // Reset input styles
+        [fullname, email, password, phone].forEach(input => {
+          input.classList.remove("valid", "invalid");
+        });
+      } else {
+        formSuccess.textContent = "";
+      }
+    });
+  </script>
+</body>
+</html>
