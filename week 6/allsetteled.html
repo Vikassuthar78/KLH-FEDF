@@ -1,0 +1,58 @@
+w
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        
+        
+        
+                let promise1 = new Promise((resolve, reject) => {
+        
+                    setTimeout(() => {resolve("Hello");}, 5000);
+                });
+
+
+        
+                let promise2 = new Promise((resolve, reject) => {
+        
+                    setTimeout(() => { reject("FSD");}, 10000);
+        
+                });
+
+
+        
+                let promise3 = new Promise((resolve, reject) => {
+        
+                    setTimeout(() => { resolve("Fullstack"); }, 15000);
+               
+                });
+                    
+            
+                
+                //to execute all parallelly (asynchronously), able to see result after 15 seconds only
+
+                Promise.allSettled([promise1, promise2, promise3]).then((posRes) => {
+        
+                    console.log(posRes);}, (errRes) => { console.log(errRes);
+        
+                });
+                
+
+        
+
+
+    </script>
+
+
+
+</body>
+
+</html>

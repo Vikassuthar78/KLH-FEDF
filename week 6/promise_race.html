@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+
+        let promise1 = new Promise((resolve, reject) => {
+
+            setTimeout(() => { resolve("Hello"); }, 10000);
+        });
+
+        let promise2 = new Promise((resolve, reject) => {
+
+            setTimeout(() => { reject("FSD"); }, 3000);
+
+        });
+
+        let promise3 = new Promise((resolve, reject) => {
+
+            setTimeout(() => { resolve("Fullstack"); }, 1000);
+
+        });
+
+
+
+        //To know out of 3 which promise is executed first , we have race()
+        Promise.race([promise1, promise2, promise3]).then((posRes) => {
+
+            console.log(posRes);
+        }, (errRes) => {
+
+            console.log(errRes);
+
+        });
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>
