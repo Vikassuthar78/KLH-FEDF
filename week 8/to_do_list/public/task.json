@@ -1,0 +1,13 @@
+[
+  {    "id": 1,    "title": "Complete React assignment",    "completed": false  },
+  {
+    "id": 2,
+    "title": "Review JavaScript notes",
+    "completed": true
+  },
+  {
+    "id": 3,
+    "title": "Practice CSS Flexbox",
+    "completed": false
+  }
+]
